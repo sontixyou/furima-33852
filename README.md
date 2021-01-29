@@ -2,15 +2,16 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| nickname      | string | null: false |
-| email         | string | null: false |
-| password      | string | null: false |
-| name-kanji    | string | null: false |
-| name-hiragana | string | null: false |
-| name-katakana | string | null: false |
-| birthday      | date   | null: false |
+| Column              | Type   | Options     |
+| ------------------- | ------ | ----------- |
+| nickname            | string | null: false |
+| email               | string | null: false |
+| encrypted_password  | string | null: false |
+| first_name          | string | null: false |
+| last_name           | string | null: false |
+| first_name_furigana | string | null: false |
+| last_name_furigana  | string | null: false |
+| birthday            | date   | null: false |
 
 ### Association
 
@@ -18,34 +19,45 @@
 
 ## products テーブル
 
-| Column      | Type          | Options     |
-| ----------- | ------------- | ----------- |
-| title       | string        | null: false |
-| detail      | text          | null: false |
-| condition   | string        | null: false |
-| deliver-fee | numeric       | null: false |
-| area        | string        | null: false |
-| deliver-day | date          | null: false |
-| price       | numeric       | null: false |
-| stock       | boolean       | null: false |
-| image       | ActiveStorage | null: false |
-| user        | reference     | null: false |
+| Column         | Type          | Options     |
+| -------------- | ------------- | ----------- |
+| title          | string        | null: false |
+| detail         | text          | null: false |
+| condition_id   | integer       | null: false |
+| deliver_fee_id | integer       | null: false |
+| area_id        | integer       | null: false |
+| deliver_day_id | integer       | null: false |
+| category_id    | integer       | null: false |
+| price          | numeric       | null: false |
+| stock          | boolean       | null: false |
+| user           | reference     | null: false |
 
 ### Association
 
 - belong_to :users
 - has_one :trade
+- has_one :purchase_record
 
 ## trade テーブル
 
 | Column           | Type    | Options     |
 | ---------------- | ------- | ----------- |
-| cash-card-number | numeric | null: false |
 | address-number   | numeric | null: false |
 | prefecture       | string  | null: false |
 | city             | string  | null: false |
 | house-number     | string  | null: false |
 | tel              | numeric | null: false |
+
+### Association
+
+- belongs_to :products
+
+## ｐurchase_records テーブル
+
+| Column    | Type    | Options     |
+| --------- | ------- | ----------- |
+| user_id   | integer | null: false |
+| title_id  | integer | null: false |
 
 ### Association
 
