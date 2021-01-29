@@ -15,7 +15,7 @@
 
 ### Association
 
-- has_many :products, through: :purchase_records
+- has_many :products
 
 ## products テーブル
 
@@ -36,7 +36,7 @@
 
 - belong_to :users
 - has_one :trade
-- has_many :users, through: :purchase_records
+- has_one :purchase_record
 
 ## trade テーブル
 
@@ -61,5 +61,4 @@
 
 ### Association
 
-- belongs_to :users
 - belongs_to :products
