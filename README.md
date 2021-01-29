@@ -34,33 +34,34 @@
 
 ### Association
 
+- has_one :purchase_record
 - belong_to :user
-- has_one :trade
 
-## trades テーブル
+## contacts テーブル
 
 | Column         | Type    | Options     |
 | -------------- | ------- | ----------- |
-| address_number | numeric | null: false |
+| address_number | string  | null: false |
 | prefecture_id  | integer | null: false |
 | city           | string  | null: false |
 | house_number   | string  | null: false |
-| building       | string  | null: false |
+| building       | string  |             |
 | tel            | string  | null: false |
+| purchase_record   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :purchase_record
+
+## purchase_records テーブル
+
+| Column    | Type       | Options     |
+| --------- | ---------- | ----------- |
+| user      | references | null: false, foreign_key: true |
+| product   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :product
-- belongs_to :purchase_record
-
-## ｐurchase_records テーブル
-
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
-| user      | references | null: false |
-| title     | references | null: false |
-
-### Association
-
 - belongs_to :user
-- has_one :trade
+- has_one :contact
