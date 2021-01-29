@@ -30,40 +30,37 @@
 | deliver_day_id | integer       | null: false                    |
 | category_id    | integer       | null: false                    |
 | price          | integer       | null: false                    |
-| stock          | boolean       | null: false                    |
 | user           | references    | null: false, foreign_key: true |
 
 ### Association
 
-- belong_to :users
-- has_one :trades
-- has_one :purchase_records
+- belong_to :user
+- has_one :trade
 
 ## trades テーブル
 
 | Column         | Type    | Options     |
 | -------------- | ------- | ----------- |
-| address-number | numeric | null: false |
+| address_number | numeric | null: false |
 | prefecture_id  | integer | null: false |
 | city           | string  | null: false |
-| house-number   | string  | null: false |
+| house_number   | string  | null: false |
 | building       | string  | null: false |
-| tel            | numeric | null: false |
+| tel            | string  | null: false |
 
 ### Association
 
-- belongs_to :products
-- has_one :purchase_records
+- belongs_to :product
+- belongs_to :purchase_record
 
 ## ｐurchase_records テーブル
 
 | Column    | Type       | Options     |
 | --------- | ---------- | ----------- |
-| user_id   | references | null: false |
-| title_id  | references | null: false |
+| user      | references | null: false |
+| title     | references | null: false |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :products
-- belongs_to :trades
+- belongs_to :user
+- has_one :trade
