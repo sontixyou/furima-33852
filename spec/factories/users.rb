@@ -10,6 +10,5 @@ FactoryBot.define do
     first_name_furigana {"タロウ"}
     last_name_furigana {"スズキ"}
     birthday {'1990/09/01'}
-
   end
 end 
