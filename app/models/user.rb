@@ -12,7 +12,7 @@ class User < ApplicationRecord
       validates :password 
     end
     
-    with_options format: {with: /\A[ぁ-んァ-ン一-龥]/, message: '漢字、ひらがな、カタカナのみ使用してください'} do
+    with_options format: {with: /\A[ぁ-んァ-ン一-龥々]+\z/, message: '漢字、ひらがな、カタカナのみ使用してください'} do
       validates :first_name
       validates :last_name
     end
