@@ -82,7 +82,7 @@ RSpec.describe User, type: :model do
       end
 
       it "last_name_furiganaが全角（カタカナ）以外は登録できない" do
-        @user.last_name_furigana = "Suzki"
+        @user.last_name_furigana = "Suzuki"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name furigana カタカナのみ使用してください")
       end
@@ -93,10 +93,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it "重複したemailが存在する場合登録できない" do
+      it "重複したemailが存在する場合登録できないこと" do
         @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
+        another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
@@ -108,25 +107,25 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
 
-      it "passwordが半角英語のみでは登録できない" do
+      it "passwordが半角英字のみでは登録できない" do
         @user.password = "aaaaaaa"
         @user.password_confirmation = "aaaaaaa"
         @user.valid?
-        expect(@user.errors.full_messages).to include("")
+        expect(@user.errors.full_messages).to include("Password 半角英数字のみ使用してください")
       end
 
       it "passwordが数字のみでは登録できない" do
         @user.password = "1111111"
         @user.password_confirmation = "1111111"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is only numbers")
+        expect(@user.errors.full_messages).to include("Password 半角英数字のみ使用してください")
       end
 
       it "passwordが全角英数字のみでは登録できない" do
         @user.password = "１１１１ａａ"
         @user.password_confirmation = "１１１１ａａ"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password isn't large character")
+        expect(@user.errors.full_messages).to include("Password 半角英数字のみ使用してください")
       end
     end
   end

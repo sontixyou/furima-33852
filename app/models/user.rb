@@ -4,11 +4,22 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]/, message: '漢字、ひらがな、カタカナのみ使用してください'}
-    validates :last_name, format: {with: /\A[ぁ-んァ-ン一-龥]/, message: '漢字、ひらがな、カタカナのみ使用してください'}
-    validates :first_name_furigana, format: {with: /\A[ァ-ヶー－]+\z/, message: 'カタカナのみ使用してください'}
-    validates :last_name_furigana, format: {with: /\A[ァ-ヶー－]+\z/, message: 'カタカナのみ使用してください'}
     validates :birthday
+    validates :email, uniqueness: { case_sensitive: true, message: 'はもう登録されています' }
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+    with_options format: {with: PASSWORD_REGEX, message: '半角英数字のみ使用してください'} do
+      validates :password 
+    end
+    
+    with_options format: {with: /\A[ぁ-んァ-ン一-龥]/, message: '漢字、ひらがな、カタカナのみ使用してください'} do
+      validates :first_name
+      validates :last_name
+    end
+    with_options format: {with: /\A[ァ-ヶー－]+\z/, message: 'カタカナのみ使用してください'} do
+      validates :first_name_furigana
+      validates :last_name_furigana
+    end
+    
   end
 
   has_many :products
