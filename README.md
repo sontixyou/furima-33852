@@ -35,7 +35,7 @@
 ### Association
 
 - has_one :purchase_record
-- belong_to :user
+- belongs_to :user
 
 ## contacts テーブル
 
