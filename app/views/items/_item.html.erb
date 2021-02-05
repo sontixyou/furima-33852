@@ -1,5 +1,5 @@
 <li class='list'>
-        <%= link_to "#" do %>
+      <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
@@ -15,12 +15,12 @@
             <%= item.title %>
           </h3>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= Deliveryfee.find(item.delivery_fee_id).name %></span>
+            <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
           </div>
         </div>
-        <% end %>
-      </li>
+      <% end %>
+</li>
