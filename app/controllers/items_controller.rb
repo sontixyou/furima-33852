@@ -30,17 +30,18 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:format])
+    item = Item.find(params[:id])
     item.update(item_params)
-    render :edit
+    redirect_to root_path
   end
+  
   private
   def item_params
     params.require(:item).permit(:title, :detail, :price, :category_id, :condition_id, :delivery_day_id, :delivery_fee_id, :prefecture_id, :image).merge(user_id: current_user.id)
   end
 
   def set_item
-    @item = Item.find(params[:format])
+    @item = Item.find(params[:id])
   end
 
   def move_to_index
