@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show]
   before_action :move_to_sign_in, only: [:edit]
   before_action :move_to_index, only: [:edit]
+
   def index
     @items =Item.all.order("created_at DESC")
   end
@@ -55,9 +56,15 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
+<<<<<<< Updated upstream
     unless current_user.id == @item.user_id && user_signed_in?
       redirect_to root_path
     end
+=======
+    unless user_signed_in? && current_user.id == @item.user.id
+      redirect_to root_path
+    end  
+>>>>>>> Stashed changes
   end  
 end
  
