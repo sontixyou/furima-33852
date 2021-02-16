@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  has_one :purchase_record
+  has_one :order
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -22,7 +22,7 @@ class Item < ApplicationRecord
       validates :condition_id
       validates :delivery_day_id
       validates :delivery_fee_id
-      validates :prefecture_id  
+      validates :prefecture_id
     end
 
   end
