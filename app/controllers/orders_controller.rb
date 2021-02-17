@@ -1,33 +1,33 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :move_to_index, only: :index
+  before_action :item_find, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
-    
     @order_address = OrderAddress.new
   end
 
- 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_address_params)
-    
+
     if @order_address.valid?
       pay_item
       @order_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :index
-    end       
+    end
   end
 
   private
+
   def order_address_params
-    params.require(:order_address).permit(:address_number, :prefecture_id, :city, :house_number, :building, :tel).merge(user_id: @item.user_id, item_id: @item.id)
+    params.require(:order_address).permit(:address_number, :prefecture_id, :city, :house_number, :building, :tel).merge(
+      user_id: @item.user_id, item_id: @item.id
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
@@ -37,8 +37,10 @@ class OrdersController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:item_id])
-    if current_user.id == item.user_id || item.order.present?
-      redirect_to root_path
-    end
-  end  
+    redirect_to root_path if current_user.id == item.user_id || item.order.present?
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 end
