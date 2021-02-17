@@ -4,6 +4,10 @@ RSpec.describe OrderAddress, type: :model do
   describe '商品配送先の保存' do
     before do
       @order_address = FactoryBot.build(:order_address)
+      @user = FactoryBot.build(:user)
+      @item = FactoryBot.build(:item)
+      @order_address.user_id = 1
+      @order_address.item_id = 2
     end
     context '商品を購入できる場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
