@@ -6,7 +6,8 @@ class OrderAddress
     validates :address_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :house_number
-    validates :tel, format: { with: /\A[0-9]+\z/, message: 'is only numbers' }
+    validates :tel, format: { with: /\A[0-9]+\z/, message: 'is only numbers' },
+                    length: { maximum: 11, too_long: '最大%{count}文字まで使えます' }
     validates :user_id
     validates :item_id
     validates :token

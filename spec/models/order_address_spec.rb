@@ -110,6 +110,13 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Tel is only numbers')
       end
+
+      it 'telが12文字以上では登録できないこと' do
+        @order_address.tel = '0000000000000'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Tel 最大11文字まで使えます")
+      end
+
       it 'tokenが空だと保存できないこと' do
         @order_address.token = ''
         @order_address.valid?
