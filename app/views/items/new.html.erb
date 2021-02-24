@@ -5,7 +5,7 @@
 
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @item, local: true) do |f| %>
+    <%= form_with(model: @item, id: 'new_item', local: true) do |f| %>
     <%= render 'shared/error_messages', model: f.object %> 
     <%# 出品画像 %>
     <div class="img-upload">
@@ -20,6 +20,7 @@
         <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
+    <div id="image-list"></div>
     <%# /出品画像 %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
@@ -140,6 +141,7 @@
     <%# /下部ボタン %>
   </div>
   <% end %>
+  <%= image_tag @item.image, id: 'image' if @item.image.present? %>
   
   <footer class="items-sell-footer">
     <ul class="menu">
