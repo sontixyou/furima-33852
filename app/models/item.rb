@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
   has_one :order
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefecture
 
-  validate :image_attached
+  # validate :images_attached
   with_options presence: true do
     validates :title, length: { maximum: 40,
                                 too_long: '最大%{count}文字まで使えます' }
@@ -27,7 +27,7 @@ class Item < ApplicationRecord
     end
   end
 
-  def image_attached
-    errors.add(:image, :presence) if image.blank?
+  def images_attached
+    errors.add(:images, :presence) if images.blank?
   end
 end

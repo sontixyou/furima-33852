@@ -17,7 +17,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image" %>
+        <%= f.file_field :images, name: 'message[images][]', id:"item-image" %>
       </div>
     </div>
     <%# /出品画像 %>
@@ -140,6 +140,12 @@
     <%# /下部ボタン %>
   </div>
   <% end %>
+<<<<<<< Updated upstream
+=======
+  <% @item.images.each do |image| %>
+    <%= image_tag image, class: 'images' %>
+  <% end %>
+>>>>>>> Stashed changes
   
   <footer class="items-sell-footer">
     <ul class="menu">
