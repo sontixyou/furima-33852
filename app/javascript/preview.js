@@ -21,7 +21,6 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       if (imageContent){
         imageContent.remove();
       }
-
       const file = e.target.files[0];
       const blob = window.URL.createObjectURL(file);
 
