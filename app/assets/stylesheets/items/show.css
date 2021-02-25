@@ -32,7 +32,10 @@
   background-color: rgb(205, 202, 202);
   object-fit: contain;
 }
-
+.images{
+  width: 30vw;
+  height: 30vw;
+}
 .item-price-box {
   margin: 25px 0px;
   display: flex;
