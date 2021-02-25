@@ -17,7 +17,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image" %>
+        <%= f.file_field :images, name: 'item[images][]', id:"item-image" %>
       </div>
     </div>
     <div id="image-list"></div>
@@ -142,7 +142,12 @@
   </div>
   <div id="image-list"></div>
   <% end %>
-  <%= image_tag @item.image, id: 'image' if @item.image.present? %>
+  <% if @item.images.present? %>
+    <% @item.images.each do |image| %>
+      <%= image_tag image, class: 'images' %>
+    <% end %>
+  <% end %>
+      
   
   <footer class="items-sell-footer">
     <ul class="menu">
