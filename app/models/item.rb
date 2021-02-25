@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
   has_one :order
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -28,6 +28,6 @@ class Item < ApplicationRecord
   end
 
   def image_attached
-    errors.add(:image, :presence) if image.blank?
+    errors.add(:images, :presence) if images.blank?
   end
 end
