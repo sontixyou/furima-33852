@@ -25,42 +25,42 @@ RSpec.describe OrderAddress, type: :model do
       it 'addressが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.address_number = '11111111'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
       it 'addressが全角数字だと保存できないこと' do
         @order_address.address_number = '１１１-１１１１'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'addressが全角文字では登録できないこと' do
         @order_address.address_number = 'あああ-ああああ'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'addressが半角英数混合では登録できないこと' do
         @order_address.address_number = '111-aaaa'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'addressが半角英語だけでは登録できないこと' do
         @order_address.address_number = 'aaa-aaaa'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'addressが1111-1111では登録できないこと' do
         @order_address.address_number = '1111-1111'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'addressが111-11111では登録できないこと' do
         @order_address.address_number = '1111-11111'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Address number is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include("Address number  ハイフンを入れてください")
       end
 
       it 'prefecture_idを選択していないと保存できないこと' do
@@ -90,25 +90,25 @@ RSpec.describe OrderAddress, type: :model do
       it 'telが全角数字だと保存できないこと' do
         @order_address.tel = '１１１１１１１１１１'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Tel is only numbers')
+        expect(@order_address.errors.full_messages).to include("Tel  は数字のみ入力可能です")
       end
 
       it 'telが全角文字では登録できないこと' do
         @order_address.tel = 'あああああああ'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Tel is only numbers')
+        expect(@order_address.errors.full_messages).to include("Tel  は数字のみ入力可能です")
       end
 
       it 'telが半角英数混合では登録できないこと' do
         @order_address.tel = 'aaa11111'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Tel is only numbers')
+        expect(@order_address.errors.full_messages).to include("Tel  は数字のみ入力可能です")
       end
 
       it 'telが半角英語だけでは登録できないこと' do
         @order_address.tel = 'aaaaaaa'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Tel is only numbers')
+        expect(@order_address.errors.full_messages).to include("Tel  は数字のみ入力可能です")
       end
 
       it 'telが12文字以上では登録できないこと' do
