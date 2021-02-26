@@ -140,15 +140,7 @@
     </div>
     <%# /下部ボタン %>
   </div>
-  <div id="image-list"></div>
   <% end %>
-  <% if @item.images.present? %>
-    <% @item.images.each do |image| %>
-      <%= image_tag image, class: 'images' %>
-    <% end %>
-  <% end %>
-      
-  
   <footer class="items-sell-footer">
     <ul class="menu">
       <li><a href="#">プライバシーポリシー</a></li>
