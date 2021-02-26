@@ -3,10 +3,10 @@ class OrderAddress
   attr_accessor :address_number, :prefecture_id, :city, :house_number, :building, :tel, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :address_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :address_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: ' ハイフンを入れてください' }
     validates :city
     validates :house_number
-    validates :tel, format: { with: /\A[0-9]+\z/, message: 'is only numbers' },
+    validates :tel, format: { with: /\A[0-9]+\z/, message: ' は数字のみ入力可能です' },
                     length: { maximum: 11, too_long: '最大%{count}文字まで使えます' }
     validates :user_id
     validates :item_id
