@@ -37,6 +37,10 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       createImageHTML(blob);
     });
   });
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> ac7e81c07475989c4e9d6faf8bd7a93821cda605
