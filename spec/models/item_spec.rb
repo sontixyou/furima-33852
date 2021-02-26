@@ -12,9 +12,9 @@ RSpec.describe Item, type: :model do
   end
   context '商品を出品できない場合' do
     it '出品画像が空だと商品を出品できない' do
-      @item.image = nil
+      @item.images = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include('Image translation missing: en.activerecord.errors.models.item.attributes.image.presence')
+      expect(@item.errors.full_messages).to include("Images translation missing: en.activerecord.errors.models.item.attributes.images.presence")
     end
     it '商品名が空だと商品を出品できない' do
       @item.title = ''
