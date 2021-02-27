@@ -27,13 +27,13 @@
   margin-bottom: 5px;
 }
 
-.search-form>.input-box {
+.search-form>.search-input {
   width: 100%;
   height: 5vh;
   padding-left: 10px;
 }
 
-.search-button {
+.search-btn {
   width: 5vh;
   border: 0;
   cursor: pointer;
@@ -41,9 +41,7 @@
   padding: 8px;
 }
 
-.search-icon {
-  width: 100%;
-}
+
 
 .nav {
   font-size: 18px;
