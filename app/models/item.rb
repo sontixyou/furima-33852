@@ -30,4 +30,12 @@ class Item < ApplicationRecord
   def image_attached
     errors.add(:images, :presence) if images.blank?
   end
+
+  def self.search(search)
+    if search != ""
+      Item.where('title LIKE(?)', "%#{search}%")      
+    else
+      Item.all
+    end
+  end  
 end

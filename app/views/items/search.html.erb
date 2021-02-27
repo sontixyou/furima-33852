@@ -1,0 +1,13 @@
+<%= render "shared/header" %>
+
+<ul class='item-lists'>
+  <% if @items.blank? %>
+    <div class="no-result">該当する商品はありません</div>
+  <% else%>
+    <% @items.each do |item| %>
+      <%= render partial: "item", locals: { item: item } %>
+    <% end %>
+  <% end %>  
+</ul>
+
+<%= render "shared/footer" %>
