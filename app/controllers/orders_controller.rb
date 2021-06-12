@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
   
   def index
+    # binding.pry
     @order_address = OrderAddress.new
   end
 
